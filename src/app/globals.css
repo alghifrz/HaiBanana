@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faf7ef;
+  --color-cream-deep: #f2ece0;
+  --color-ink: #12180f;
+  --color-bark: #1d2a1c;
+  --color-leaf: #1a6b4a;
+  --color-leaf-soft: #e4ede2;
+  --color-banana: #f0b432;
+  /* Deeper gold used for headline text, where bright banana yellow would not
+     reach an accessible contrast ratio on the cream background. */
+  --color-gold: #b8860b;
+  --color-banana-soft: #fbeec2;
+  --color-stone: #5c6158;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Reserves the scrollbar gutter so locking scroll for the mobile menu
+       does not shift the layout. */
+    scrollbar-gutter: stable;
+  }
+
+  /* Keeps section headings clear of the fixed navbar on anchor navigation. */
+  :target,
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  @media (min-width: 768px) {
+    :target,
+    section[id] {
+      scroll-margin-top: 6.5rem;
+    }
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-banana);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-leaf);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* Scroll-reveal primitive driven by the Reveal client component. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal="visible"] {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  [data-reveal],
+  [data-reveal="visible"] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
