@@ -22,7 +22,8 @@ export function SectionLink({ href, onNavigate, children, ...props }: SectionLin
     event.preventDefault();
     onNavigate?.();
 
-    // Two frames, so a closing overlay can unmount and release the scroll lock.
+    // Two frames after the menu releases overflow:hidden, otherwise
+    // scrollIntoView is ignored on mobile.
     requestAnimationFrame(() => {
       requestAnimationFrame(() => scrollToTarget(href));
     });

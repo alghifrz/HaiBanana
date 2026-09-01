@@ -29,11 +29,16 @@ export interface ProcessStep {
   id: string;
   title: string;
   description: string;
+  image: string;
 }
 
 export interface PartnershipBenefit {
+  id: string;
   title: string;
   description: string;
+  image: string;
+  /** Tailwind grid placement for the staggered bento layout. */
+  layout: string;
 }
 
 export interface ContactChannel {

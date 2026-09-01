@@ -2,11 +2,11 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { aboutValues } from "@/data/site";
+import { aboutValues, heroHighlights } from "@/data/site";
 
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-heading" className="py-20 md:py-28 lg:py-32">
+    <section id="about" aria-labelledby="about-heading" className="py-20 md:pb-28 lg:pb-32 lg:pt-22 bg-cream">
       <Container>
         <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-16">
           <Reveal className="order-last lg:order-first">

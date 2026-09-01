@@ -3,7 +3,8 @@ export interface Product {
   name: string;
   description: string;
   image: string;
-  /** In-page or external link for the card action. Defaults to the contact section. */
-  href?: string;
+  /** Longer copy shown in the product detail modal. */
+  details: string;
+  suitableFor: string[];
   category?: string;
 }

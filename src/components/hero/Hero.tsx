@@ -8,42 +8,21 @@ import { hero, heroHighlights, whatsapp } from "@/data/site";
 export function Hero() {
   return (
     <section id="home" aria-labelledby="home-heading" className="relative z-0">
-      {/* Hero */}
-      <div className="relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src={hero.image.src}
-            alt={hero.image.alt}
-            fill
-            priority
-            sizes="100vw"
-            className="
-              object-cover
-              object-[68%_center]
-              sm:object-[70%_center]
-              md:object-[72%_center]
-              lg:object-right
-            "
-          />
+      <div className="relative pb-10 sm:pb-14 md:pb-20 lg:pb-28">
+        <div
+          aria-hidden="true"
+          className="
+            absolute inset-0
+            bg-linear-to-r
+            from-cream
+            via-cream/90
+            to-cream/20
+            sm:via-cream/85
+            sm:to-transparent
+            lg:max-w-3/4
+          "
+        />
 
-          {/* Gradient Overlay */}
-          <div
-            aria-hidden="true"
-            className="
-              absolute inset-0
-              bg-linear-to-r
-              from-cream
-              via-cream/90
-              to-cream/20
-              sm:via-cream/85
-              sm:to-transparent
-              lg:max-w-3/4
-            "
-          />
-        </div>
-
-        {/* Hero Content */}
         <Container className="relative">
           <div
             className="
@@ -53,24 +32,23 @@ export function Hero() {
               flex-col
               justify-center
               pt-24
-              pb-28
+              pb-20
 
               sm:min-h-[36rem]
               sm:max-w-2xl
               sm:pt-28
-              sm:pb-32
+              sm:pb-24
 
               md:min-h-[38rem]
               md:pt-32
-              md:pb-40
+              md:pb-28
 
               lg:min-h-[42rem]
               lg:max-w-2xl
               lg:pt-32
-              lg:pb-44
+              lg:pb-32
             "
           >
-            {/* Heading */}
             <Reveal>
               <h1
                 id="home-heading"
@@ -97,9 +75,7 @@ export function Hero() {
                   <span
                     key={line.text}
                     className={`block ${
-                      line.tone === "accent"
-                        ? "text-banana"
-                        : "text-leaf"
+                      line.tone === "accent" ? "text-banana" : "text-leaf"
                     }`}
                   >
                     {line.text}
@@ -108,7 +84,6 @@ export function Hero() {
               </h1>
             </Reveal>
 
-            {/* Description */}
             <Reveal delay={120}>
               <p
                 className="
@@ -130,7 +105,6 @@ export function Hero() {
               </p>
             </Reveal>
 
-            {/* CTA */}
             <Reveal delay={210}>
               <div
                 className="
@@ -159,7 +133,104 @@ export function Hero() {
           </div>
         </Container>
 
-        {/* Bottom Wave */}
+        <div className="">
+          <Container className="relative z-10 -mt-8 pb-10 sm:-mt-10 md:-mt-22 flex justify-center">
+            <Reveal>
+              <ul
+                className="
+                  grid
+                  max-w-5xl
+                  grid-cols-2
+                  overflow-hidden
+                  rounded-2xl
+                  border
+                  border-white/60
+                  bg-white/40
+                  shadow-sm
+                  shadow-ink/10
+                  backdrop-blur-md
+                  
+                  sm:rounded-full
+
+                  lg:grid-cols-4
+                "
+              >
+                {heroHighlights.map((item) => (
+                  <li
+                    key={`${item.kicker}-${item.title}`}
+                    className="
+                      group
+                      flex
+                      items-center
+                      gap-2.5
+                      px-3.5
+                      py-3.5
+
+                      sm:gap-3
+                      sm:px-5
+                      sm:py-4
+
+                      md:px-6
+                      md:py-5
+
+                      lg:justify-center
+                      lg:px-7
+                    "
+                  >
+                    <Image
+                      src={item.image}
+                      alt=""
+                      width={70}
+                      height={70}
+                      sizes="70px"
+                      className="
+                        size-12
+                        object-contain
+                        sm:size-12
+                        md:size-14
+                      "
+                    />
+
+                    <p className="min-w-0 leading-tight text-leaf">
+                      <span
+                        className="
+                          block
+                          truncate
+                          text-[9px]
+                          font-medium
+                          uppercase
+                          tracking-[0.08em]
+                          text-leaf/60
+
+                          sm:text-[10px]
+                          md:text-xs
+                        "
+                      >
+                        {item.kicker}
+                      </span>
+
+                      <span
+                        className="
+                          mt-0.5
+                          block
+                          truncate
+                          text-[11px]
+                          font-semibold
+
+                          sm:text-sm
+                          md:text-base
+                        "
+                      >
+                        {item.title}
+                      </span>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          </Container>
+        </div>
+
         <svg
           aria-hidden="true"
           viewBox="0 0 1440 120"
@@ -185,125 +256,7 @@ export function Hero() {
         </svg>
       </div>
 
-      {/* Floating Highlights */}
-      <Container className="relative z-10 -mt-7 pb-16 sm:-mt-9 md:-mt-1">
-        <Reveal>
-          <ul
-            className="
-              mx-auto
-              grid
-              max-w-5xl
-              grid-cols-2
-              overflow-hidden
-              rounded-2xl
-              border
-              border-white/60
-              bg-white/80
-              shadow-sm
-              shadow-ink/10
-              backdrop-blur-md
-
-              sm:rounded-2xl
-
-              lg:grid-cols-4
-            "
-          >
-            {heroHighlights.map((item) => (
-              <li
-                key={`${item.kicker}-${item.title}`}
-                className="
-                  group
-                  flex
-                  items-center
-                  gap-2.5
-                  px-3.5
-                  py-3.5
-
-                  sm:gap-3
-                  sm:px-5
-                  sm:py-4
-
-                  md:px-6
-                  md:py-5
-
-                  lg:justify-center
-                  lg:px-7
-                "
-              >
-                {/* Icon */}
-                <div
-                  className="
-                    flex
-                    size-8
-                    shrink-0
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-cream
-                    transition-transform
-                    duration-300
-                    group-hover:scale-105
-
-                    sm:size-10
-                    md:size-11
-                  "
-                >
-                  <Image
-                    src={item.image}
-                    alt=""
-                    width={64}
-                    height={64}
-                    sizes="40px"
-                    className="
-                      size-5
-                      object-contain
-
-                      sm:size-6
-                      md:size-7
-                    "
-                  />
-                </div>
-
-                {/* Text */}
-                <p className="min-w-0 leading-tight text-leaf">
-                  <span
-                    className="
-                      block
-                      truncate
-                      text-[9px]
-                      font-medium
-                      uppercase
-                      tracking-[0.08em]
-                      text-leaf/60
-
-                      sm:text-[10px]
-                      md:text-xs
-                    "
-                  >
-                    {item.kicker}
-                  </span>
-
-                  <span
-                    className="
-                      mt-0.5
-                      block
-                      truncate
-                      text-[11px]
-                      font-semibold
-
-                      sm:text-sm
-                      md:text-base
-                    "
-                  >
-                    {item.title}
-                  </span>
-                </p>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-      </Container>
-      <div className="mx-48 h-[0.5px] bg-leaf/20 mt-8 flex justify-center items-center"></div>
+ 
     </section>
   );
 }

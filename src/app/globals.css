@@ -30,13 +30,13 @@
   /* Keeps section headings clear of the fixed navbar on anchor navigation. */
   :target,
   section[id] {
-    scroll-margin-top: 5.5rem;
+    scroll-margin-top: 0rem;
   }
 
   @media (min-width: 768px) {
     :target,
     section[id] {
-      scroll-margin-top: 6.5rem;
+      scroll-margin-top: 0.5rem;
     }
   }
 

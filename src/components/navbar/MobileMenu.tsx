@@ -16,7 +16,7 @@ export function MobileMenu({ isOpen, activeSection, onNavigate }: MobileMenuProp
     <div
       id="mobile-navigation"
       inert={!isOpen}
-      className={`fixed inset-x-0 top-16 bottom-0 z-40 overflow-y-auto border-t border-ink/8 bg-cream transition-all duration-300 ease-out md:top-20 lg:hidden ${
+      className={`fixed inset-x-0 top-[calc(4rem+env(safe-area-inset-top))] bottom-0 z-40 overflow-y-auto overscroll-contain border-t border-ink/8 bg-cream transition-all duration-300 ease-out md:top-[calc(5rem+env(safe-area-inset-top))] lg:hidden ${
         isOpen ? "translate-y-0 opacity-100" : "pointer-events-none -translate-y-2 opacity-0"
       }`}
     >

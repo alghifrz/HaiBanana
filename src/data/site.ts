@@ -66,57 +66,72 @@ export const aboutValues: ValueItem[] = [
 
 export const processSteps: ProcessStep[] = [
   {
-    id: "cultivation",
-    title: "Cultivation",
-    description:
-      "Plants are grown and monitored through the season with attention to soil health and fruit development.",
-  },
-  {
     id: "harvest",
-    title: "Harvest",
-    description:
-      "Bunches are cut at the right maturity and moved out of the field quickly to protect quality.",
+    title: "Panen",
+    description: "Dipanen dari kebun pilihan pada umur yang tepat.",
+    image: "/images/process/1.webp",
   },
   {
     id: "sorting",
-    title: "Sorting & grading",
-    description:
-      "Fruit is washed, inspected and separated by size and grade so each order is consistent.",
+    title: "Sortasi & Grading",
+    description: "Disortir dan dikelompokkan sesuai ukuran dan mutu.",
+    image: "/images/process/2.webp",
   },
   {
-    id: "processing",
-    title: "Packing & processing",
-    description:
-      "Produce is packed for shipment, or processed into chips, dried fruit, puree and flour.",
+    id: "post-harvest",
+    title: "Pascapanen",
+    description: "Diproses dengan standar kebersihan dan kualitas.",
+    image: "/images/process/3.webp",
   },
   {
-    id: "delivery",
-    title: "Delivery",
-    description:
-      "Orders are dispatched with the handling and documentation each destination requires.",
+    id: "packing",
+    title: "Pengemasan",
+    description: "Dikemas rapi untuk menjaga kualitas selama pengiriman.",
+    image: "/images/process/4.webp",
+  },
+  {
+    id: "distribution",
+    title: "Distribusi",
+    description: "Dikirim tepat waktu ke berbagai wilayah.",
+    image: "/images/process/5.webp",
   },
 ];
 
 export const partnershipBenefits: PartnershipBenefit[] = [
   {
-    title: "Retail & wholesale",
-    description:
-      "Regular volumes of graded fresh fruit, packed to your specification and delivery schedule.",
+    id: "supermarket",
+    title: "Supermarket",
+    description: "Pasokan rutin untuk rak ritel dan pasar modern.",
+    image: "/images/partnership/1new.webp",
+    layout: "min-h-[20rem] lg:col-span-4 lg:row-span-2 lg:min-h-0",
   },
   {
-    title: "Food service",
-    description:
-      "Reliable supply for kitchens and caterers who need the same product quality every week.",
+    id: "horeca",
+    title: "HORECA",
+    description: "Hotel, restoran, dan katering yang butuh pasokan stabil.",
+    image: "/images/partnership/2.webp",
+    layout: "min-h-[18rem] lg:col-span-4",
   },
   {
-    title: "Manufacturing",
-    description:
-      "Puree, flour and dried fruit supplied as ingredients for beverage, bakery and dairy production.",
+    id: "distributor",
+    title: "Distributor",
+    description: "Volume besar untuk jaringan distribusi di berbagai wilayah.",
+    image: "/images/partnership/3.webp",
+    layout: "min-h-[18rem] lg:col-span-4",
   },
   {
-    title: "Private label",
-    description:
-      "Processed products packed under your own brand, from packaging design through to delivery.",
+    id: "reseller",
+    title: "Reseller",
+    description: "Stok untuk dijual kembali ke pasar lokal.",
+    image: "/images/partnership/4.webp",
+    layout: "min-h-[16rem] lg:col-span-5",
+  },
+  {
+    id: "industri",
+    title: "Industri Olahan",
+    description: "Bahan baku untuk produksi makanan dan minuman.",
+    image: "/images/about/Fotopisang.webp",
+    layout: "min-h-[16rem] lg:col-span-3",
   },
 ];
 
