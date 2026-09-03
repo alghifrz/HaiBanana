@@ -16,7 +16,7 @@ import type {
  */
 export const site = {
   name: "Haibanana",
-  tagline: "Quality Banana for Better Life",
+  tagline: "Pisang Berkualitas untuk Kehidupan yang Lebih Baik",
   description:
     "Haibanana menyediakan pisang segar pilihan dengan kualitas terbaik dari petani terpercaya untuk pasar Indonesia.",
   url: "https://www.example.com",
@@ -25,8 +25,8 @@ export const site = {
 /** Placeholder number — replace with the real one in international format. */
 export const whatsapp = {
   label: "Hubungi Kami",
-  number: "620000000000",
-  href: "https://wa.me/620000000000",
+  number: "62",
+  href: "https://wa.me/62",
 } as const;
 
 export const navItems: NavItem[] = [
@@ -139,19 +139,18 @@ export const partnershipBenefits: PartnershipBenefit[] = [
 export const contactChannels: ContactChannel[] = [
   {
     label: "Email",
-    value: "hello@banana.example",
-    href: "mailto:hello@banana.example",
+    value: "sbillaa@gmail.com",
+    href: "mailto:sbillaa@gmail.com",
   },
   {
-    label: "Phone",
-    value: "+00 000 0000 0000",
-    href: "tel:+000000000000",
+    label: "Telepon",
+    value: "+62 812 3456 7890",
+    href: "tel:+62 812 3456 7890",
   },
   {
-    label: "Office",
-    value: "Address line 1, City, Country",
+    label: "Alamat",
+    value: "Dusun Wedani, Desa Badang, Kecamatan Ngoro Kab Jombang4",
     href: "#contact",
   },
 ];
 
-export const officeHours = "Monday – Friday, 09:00 – 17:00";

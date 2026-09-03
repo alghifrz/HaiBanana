@@ -48,7 +48,7 @@ export function ContactForm() {
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
           <label htmlFor="contact-name" className="text-sm font-medium text-ink">
-            Name
+            Nama
           </label>
           <input
             id="contact-name"
@@ -56,28 +56,28 @@ export function ContactForm() {
             type="text"
             required
             autoComplete="name"
-            placeholder="Your full name"
+            placeholder="Nama lengkap Anda"
             className={inputClass}
           />
         </div>
 
         <div className="flex flex-col gap-2">
           <label htmlFor="contact-company" className="text-sm font-medium text-ink">
-            Company <span className="font-normal text-stone">(optional)</span>
+            Perusahaan <span className="font-normal text-stone">(optional)</span>
           </label>
           <input
             id="contact-company"
             name="company"
             type="text"
             autoComplete="organization"
-            placeholder="Company name"
+            placeholder="Nama perusahaan"
             className={inputClass}
           />
         </div>
 
         <div className="flex flex-col gap-2 sm:col-span-2">
           <label htmlFor="contact-email" className="text-sm font-medium text-ink">
-            Email
+            Email Anda
           </label>
           <input
             id="contact-email"
@@ -85,21 +85,21 @@ export function ContactForm() {
             type="email"
             required
             autoComplete="email"
-            placeholder="you@company.com"
+            placeholder="email@gmail.com"
             className={inputClass}
           />
         </div>
 
         <div className="flex flex-col gap-2 sm:col-span-2">
           <label htmlFor="contact-message" className="text-sm font-medium text-ink">
-            Message
+            Pesan Anda
           </label>
           <textarea
             id="contact-message"
             name="message"
             required
             rows={5}
-            placeholder="Tell us about the products and volumes you are looking for."
+            placeholder="Berikan informasi tentang produk dan volume yang Anda butuhkan."
             className={`${inputClass} resize-y`}
           />
         </div>
@@ -109,14 +109,14 @@ export function ContactForm() {
         type="submit"
         className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 ease-out hover:bg-leaf hover:shadow-lg hover:shadow-leaf/20 active:scale-[0.99] sm:w-auto"
       >
-        Send message
+        Kirim pesan
         <ArrowRightIcon />
       </button>
 
       <p aria-live="polite" className="mt-4 text-xs leading-relaxed text-stone">
         {isHandedOff
-          ? "Your email app should now be open with the message ready to send."
-          : "Sending opens your own email app with the message prefilled. Nothing is stored on this site."}
+          ? "Email Anda sekarang sudah terbuka dengan pesan siap dikirim."
+          : "Mengirim pesan akan membuka email Anda dengan pesan siap dikirim. Tidak ada data yang disimpan di situs ini."}
       </p>
     </form>
   );

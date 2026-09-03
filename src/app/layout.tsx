@@ -21,8 +21,11 @@ const fraunces = Fraunces({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — ${site.tagline}`,
+    default: `${site.name} | ${site.tagline}`,
     template: `%s | ${site.name}`,
+  },
+  icons: {
+    icon: "/images/brand/icon.webp",
   },
   description: site.description,
   keywords: [
@@ -40,11 +43,11 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
     siteName: site.name,
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} | ${site.tagline}`,
     description: site.description,
     images: [
       {
-        url: "/images/og/og-banana.png",
+        url: "/images/brand/logo-haibanana.webp",
         width: 1200,
         height: 630,
         alt: `${site.name} business profile`,
@@ -53,9 +56,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
+    title: `${site.name} | ${site.tagline}`,
     description: site.description,
-    images: ["/images/og/og-banana.png"],
+    images: ["/images/brand/logo-haibanana.webp"],
   },
   robots: {
     index: true,
