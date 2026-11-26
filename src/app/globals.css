@@ -4,19 +4,29 @@
   --color-cream: #faf7ef;
   --color-cream-deep: #f2ece0;
   --color-ink: #12180f;
-  --color-bark: #1d2a1c;
-  --color-leaf: #1a6b4a;
-  --color-leaf-soft: #e4ede2;
-  --color-banana: #f0b432;
-  /* Deeper gold used for headline text, where bright banana yellow would not
-     reach an accessible contrast ratio on the cream background. */
-  --color-gold: #b8860b;
-  --color-banana-soft: #fbeec2;
   --color-stone: #5c6158;
+
+  --color-primary: #28592f;
+  --color-primary-light: #2b7a30;
+  --color-primary-soft: #e8f0e9;
+
+  --color-secondary: #f2c01e;
+  --color-secondary-soft: #f8dd85;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  /* Apple-mapped motion: response ≈ settle feel, critically damped by default */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-press: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --duration-press: 100ms;
+  --duration-ui: 320ms;
+  --duration-reveal: 520ms;
+  --transition-duration-320: 320ms;
+  --ease-spring-out: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-soft-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @layer base {
@@ -44,34 +54,109 @@
     background-color: var(--color-cream);
     color: var(--color-ink);
     font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.55;
+    letter-spacing: 0;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background-color: var(--color-banana);
+    background-color: var(--color-secondary);
     color: var(--color-ink);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-leaf);
+    outline: 2px solid var(--color-primary);
     outline-offset: 3px;
     border-radius: 2px;
   }
 }
 
-/* Scroll-reveal primitive driven by the Reveal client component. */
+@layer utilities {
+  /* Instant press feedback — respond on pointer-down, not release */
+  .pressable {
+    transition:
+      transform var(--duration-press) var(--ease-press),
+      background-color var(--duration-ui) var(--ease-out-soft),
+      color var(--duration-ui) var(--ease-out-soft),
+      border-color var(--duration-ui) var(--ease-out-soft),
+      box-shadow var(--duration-ui) var(--ease-out-soft);
+  }
+
+  .pressable:active {
+    transform: scale(0.97);
+  }
+
+  .display-title {
+    font-optical-sizing: auto;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+  }
+}
+
+/* Hero: one-shot media settle (not an endless loop) */
+@keyframes hero-media-in {
+  from {
+    transform: scale(1.08);
+    filter: saturate(0.92) brightness(0.96);
+  }
+  to {
+    transform: scale(1);
+    filter: none;
+  }
+}
+
+.hero-media {
+  animation: hero-media-in 1.4s var(--ease-spring) both;
+  transform-origin: 70% center;
+  will-change: transform, filter;
+}
+
+/* Scroll-reveal: short spring-like settle from live position */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(1.5rem);
+  transform: translateY(1.1rem);
   transition:
-    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--duration-reveal) var(--ease-spring),
+    transform var(--duration-reveal) var(--ease-spring);
   transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
 
 [data-reveal="visible"] {
   opacity: 1;
   transform: none;
+  will-change: auto;
+}
+
+/* Modal panel: materialize (scale + opacity), same path for enter/exit */
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+dialog[open] {
+  animation: scrim-in 280ms var(--ease-out-soft);
+}
+
+dialog[open] > [data-sheet] {
+  animation: sheet-in 380ms var(--ease-spring);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -83,6 +168,21 @@
   [data-reveal="visible"] {
     opacity: 1;
     transform: none;
-    transition: none;
+    transition: opacity 200ms ease;
+    will-change: auto;
+  }
+
+  dialog[open],
+  dialog[open] > [data-sheet] {
+    animation: none;
+  }
+
+  .pressable:active {
+    transform: none;
+  }
+
+  .hero-media {
+    animation: none;
   }
 }
+

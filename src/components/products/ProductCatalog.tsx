@@ -12,10 +12,10 @@ export function ProductCatalog() {
 
   return (
     <>
-      <ul className="mt-14 grid gap-5 lg:grid-cols-3">
+      <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-5">
         {products.map((product, index) => (
-          <Reveal as="li" key={product.id} delay={(index % 3) * 90} className="h-full">
-            <ProductCard product={product} onDetails={setSelected} />
+          <Reveal as="li" key={product.id} delay={(index % 4) * 70} className="h-full">
+            <ProductCard product={product} index={index} onDetails={setSelected} />
           </Reveal>
         ))}
       </ul>

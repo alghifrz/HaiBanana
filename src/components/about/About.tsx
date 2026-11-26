@@ -1,74 +1,51 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { aboutValues, heroHighlights } from "@/data/site";
+import { about, aboutValues } from "@/data/site";
 
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-heading" className="py-20 md:pb-28 lg:pb-32 lg:pt-22 bg-cream">
+    <section id="about" aria-labelledby="about-heading" className="bg-cream-deep py-16 md:py-24 lg:py-28">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <Reveal className="order-last lg:order-first">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              <div className="relative aspect-19/20 overflow-hidden rounded-[2rem] bg-cream-deep">
-                <Image
-                  src="/images/about/Fotoabout.webp"
-                  alt="Rows of banana plants across the orchard"
-                  fill
-                  sizes="(min-width: 1024px) 40vw, 90vw"
-                  className="object-cover"
-                />
-              </div>
+        <div className="grid gap-6 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-7">
+            <Reveal>
+              <p className="text-sm font-medium text-primary">Tentang Kami</p>
+              <h2 id="about-heading" className="display-title mt-3 font-display text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-balance text-primary">
+                {about.title}
+              </h2>
+            </Reveal>
+          </div>
 
-              <div className="absolute -right-4 -bottom-10 w-44 overflow-hidden rounded-2xl border-4 border-cream bg-cream-deep shadow-xl shadow-ink/10 sm:-right-8 sm:w-56">
-                <Image
-                  src="/images/about/Fotopisang.webp"
-                  alt="Harvested bananas being prepared for sorting"
-                  width={900}
-                  height={700}
-                  sizes="(min-width: 640px) 14rem, 11rem"
-                  className="aspect-9/7 object-cover"
-                />
-              </div>
-            </div>
-          </Reveal>
-
-          <div>
-            <SectionHeading
-              headingId="about-heading"
-              eyebrow="Tentang Kami"
-              title="Dari Kebun Berkualitas ke Pasar Modern."
-              description="Haibanana adalah jembatan antara petani pisang berkualitas dengan kebutuhan pasar modern. Kami berkomitmen menghadirkan produk terbaik melalui proses yang terintegrasi, berkelanjutan, dan memberikan dampak positif bagi petani serta mitra bisnis."
-            />
-
-            <ul
-              aria-label="Fokus kemitraan Haibanana"
-              className="mt-12 grid grid-cols-3 divide-x divide-leaf/20"
-            >
-              {aboutValues.map((value, index) => (
-                <Reveal as="li" key={value.title} delay={index * 90}>
-                  <div className="flex flex-col items-center px-2 text-center sm:px-4">
-                    <Image
-                      src={value.image}
-                      alt=""
-                      width={128}
-                      height={128}
-                      sizes="64px 96px"
-                      className="size-16 object-contain sm:size-24"
-                    />
-                    <h3 className="mt-3 font-display text-sm leading-snug tracking-tight text-leaf sm:text-lg">
-                      {value.title}
-                    </h3>
-                    <p className="mt-1 text-xl font-semibold tracking-tight text-gold sm:text-3xl">
-                      {value.stat}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </ul>
+          <div className="lg:col-span-5 lg:self-end">
+            <Reveal delay={80}>
+              <p className="text-lg leading-relaxed text-pretty text-primary">{about.lead}</p>
+              <p className="mt-3 leading-[1.7] text-pretty text-stone">{about.description}</p>
+            </Reveal>
           </div>
         </div>
+
+        <Reveal delay={120}>
+          <div className="mt-10 grid gap-3 md:mt-14 md:grid-cols-12 md:gap-4">
+            <div className="relative aspect-4/3 overflow-hidden rounded-3xl md:col-span-8 md:aspect-auto md:h-[28rem]">
+              <Image src="/images/bahan/erert.webp" alt="Barisan tanaman pisang di kebun Haibanana" fill sizes="(min-width: 768px) 66vw, 100vw" className="object-cover" />
+            </div>
+            <div className="relative aspect-4/3 overflow-hidden rounded-3xl md:col-span-4 md:aspect-auto md:h-[28rem]">
+              <Image src="/images/bahan/qwe.webp" alt="Pisang hasil panen Haibanana yang siap disortir" fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+            </div>
+          </div>
+        </Reveal>
+
+        <ul aria-label="Pencapaian Haibanana" className="mt-10 grid grid-cols-3 divide-x divide-primary/15 border-y border-primary/15 py-8">
+          {aboutValues.map((value, index) => (
+            <Reveal as="li" key={value.title} delay={160 + index * 50}>
+              <div className="px-2 text-center md:px-6">
+                <p className="font-display text-[clamp(1.6rem,4vw,3rem)] leading-none font-semibold text-primary">{value.stat}</p>
+                <p className="mt-2 text-xs text-stone sm:text-sm">{value.title}</p>
+              </div>
+            </Reveal>
+          ))}
+        </ul>
       </Container>
     </section>
   );

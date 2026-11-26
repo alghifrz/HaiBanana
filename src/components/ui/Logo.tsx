@@ -11,7 +11,7 @@ interface LogoProps {
 export function Logo({ tone = "light", priority = false, className = "" }: LogoProps) {
   return (
     <Image
-      src="/images/brand/logo-haibanana.webp"
+      src="/images/brand/logoW.webp"
       alt={`${site.name} — ${site.tagline}`}
       // Declared at display scale (source is 1853x415) so the optimizer serves
       // a small file instead of the full-size asset.

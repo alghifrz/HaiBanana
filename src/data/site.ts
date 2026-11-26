@@ -1,7 +1,6 @@
 import type {
   ContactChannel,
   HeadlineLine,
-  HeroHighlight,
   NavItem,
   PartnershipBenefit,
   ProcessStep,
@@ -11,22 +10,57 @@ import type {
 /**
  * Central content source for the landing page.
  *
- * Every value below is placeholder copy. Nothing here is a verified fact about
- * the business — replace it with client-supplied content before launch.
+ * Set NEXT_PUBLIC_SITE_URL to the real production domain before launch so
+ * canonical tags, Open Graph URLs, sitemap, and JSON-LD stay consistent.
  */
 export const site = {
   name: "Haibanana",
-  tagline: "Pisang Berkualitas untuk Kehidupan yang Lebih Baik",
+  tagline: "Rantai Pasok Pisang Cavendish dari Kebun ke Pasar",
+  title: "Rantai Pasok Pisang Cavendish Terintegrasi",
   description:
-    "Haibanana menyediakan pisang segar pilihan dengan kualitas terbaik dari petani terpercaya untuk pasar Indonesia.",
-  url: "https://www.example.com",
+    "Haibanana membangun rantai pasok pisang Cavendish terintegrasi dari petani lokal ke ritel, F&B, dan UMKM. Kualitas seragam, pasokan stabil, dan distribusi yang andal.",
+  url: "https://haibanana.com",
+  locale: "id_ID",
+  keywords: [
+    "Haibanana",
+    "pisang Cavendish",
+    "supply chain pisang",
+    "rantai pasok pisang",
+    "supplier pisang Jombang",
+    "distributor pisang Jawa Timur",
+    "pisang Grade A",
+    "pisang Grade B",
+    "pisang Grade C",
+    "frozen banana",
+    "pisang beku",
+    "pisang supermarket",
+    "pisang HORECA",
+    "pisang F&B",
+    "petani pisang Jombang",
+  ],
+} as const;
+
+export function getSiteUrl() {
+  return (process.env.NEXT_PUBLIC_SITE_URL ?? site.url).replace(/\/$/, "");
+}
+
+export const location = {
+  streetAddress: "RT.02/RW.01, Wedani, Badang, Kec. Ngoro, Kabupaten Jombang, Jawa Timur 61473",
+  addressLocality: "",
+  addressRegion: "Jawa Timur",
+  addressCountry: "ID",
+  formatted:
+    "RT.02/RW.01, Wedani, Badang, Kec. Ngoro, Kabupaten Jombang, Jawa Timur 61473",
+  mapUrl: "https://maps.app.goo.gl/hfkoVrb8vWNj8Cb27?g_st=ic",
+  mapEmbedUrl:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3954.115803406096!2d112.25533480000001!3d-7.670697799999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7869d2cfd59ac5%3A0x4f3dcf1afe431ddb!2sHaibanana%20house%20of%20cavendish!5e0!3m2!1sid!2sid!4v1794902484693!5m2!1sid!2sid",
 } as const;
 
 /** Placeholder number — replace with the real one in international format. */
 export const whatsapp = {
   label: "Hubungi Kami",
-  number: "62",
-  href: "https://wa.me/62",
+  number: "+62 823-3880-1414",
+  href: "https://wa.me/6282338801414",
 } as const;
 
 export const navItems: NavItem[] = [
@@ -40,98 +74,125 @@ export const navItems: NavItem[] = [
 
 export const hero = {
   headline: [
-    { text: "Pisang berkualitas,", tone: "primary" },
-    { text: "siap tumbuh bersama", tone: "accent" },
-    { text: "bisnis Anda", tone: "accent" },
+    { text: "Cavendish dari kebun", tone: "primary" },
+    { text: "ke pasar yang tepat", tone: "accent" },
   ] satisfies HeadlineLine[],
-  description: site.description,
+  description:
+    "Integrated Cavendish Banana Supply Chain from Farm to Market",
   image: {
-    src: "/images/hero/hero-banner.webp",
-    alt: "Petani memegang setandan pisang segar di kebun Haibanana",
+    src: "/images/bahan/bglanding.webp",
+    alt: "Petani memegang setandan pisang Cavendish segar di kebun Haibanana",
   },
 } as const;
 
-export const heroHighlights: HeroHighlight[] = [
-  { kicker: "Dari Petani", title: "Terpercaya", image: "/images/hero/1.webp" },
-  { kicker: "Kualitas", title: "Terjamin", image: "/images/hero/2.webp" },
-  { kicker: "Distribusi", title: "Tepat Waktu", image: "/images/hero/3.webp" },
-  { kicker: "Kemitraan", title: "Berkelanjutan", image: "/images/hero/4.webp" },
-];
+export const about = {
+  title: "Dari kebun Cavendish ke pasar yang tepat.",
+  lead: "Berawal di pandemi 2021, kami menanam Cavendish untuk bertahan — lalu menjualnya sendiri, bahkan di pinggir jalan.",
+  description:
+    "Dari situ lahir Haibanana: menghadirkan pisang berkualitas dari petani lokal ke pasar yang lebih luas, dan tumbuh bersama mereka.",
+} as const;
 
 export const aboutValues: ValueItem[] = [
-  { title: "Petani Mitra", image: "/images/about/mitra.webp", stat: "50+" },
-  { title: "Pasokan per Bulan", image: "/images/about/pasokan.webp", stat: "10+ ton" },
-  { title: "Mitra Bisnis", image: "/images/about/bisnis.webp", stat: "100+" },
+  { title: "Petani mitra", image: "/images/about/mitra.webp", stat: "35+" },
+  { title: "Ton per tahun", image: "/images/about/pasokan.webp", stat: "400" },
+  { title: "Buyer partner", image: "/images/about/bisnis.webp", stat: "20+" },
 ];
+
+export const processSection = {
+  title: "Dari kebun hingga ke mitra bisnis Anda",
+  description:
+    "Sistem end-to-end menjaga mutu Cavendish: panen, grading, pematangan terkontrol, hingga distribusi ke ritel dan F&B.",
+} as const;
 
 export const processSteps: ProcessStep[] = [
   {
     id: "harvest",
-    title: "Panen",
-    description: "Dipanen dari kebun pilihan pada umur yang tepat.",
+    title: "Panen & Pencucian",
+    description:
+      "Dipanen dari petani mitra pada umur yang tepat, lalu dicuci untuk menjaga kebersihan dan kualitas awal.",
     image: "/images/process/1.webp",
   },
   {
     id: "sorting",
     title: "Sortasi & Grading",
-    description: "Disortir dan dikelompokkan sesuai ukuran dan mutu.",
+    description:
+      "Disortir menjadi Grade A, B, dan C agar setiap buah masuk ke segmen pasar dengan nilai jual optimal. Grade lebih rendah dialihkan ke pengolahan frozen.",
     image: "/images/process/2.webp",
   },
   {
-    id: "post-harvest",
-    title: "Pascapanen",
-    description: "Diproses dengan standar kebersihan dan kualitas.",
+    id: "ripening",
+    title: "Pematangan Terkontrol",
+    description:
+      "Proses pematangan dikontrol agar ukuran, warna, dan tingkat kematangan konsisten untuk ritel dan F&B.",
     image: "/images/process/3.webp",
   },
   {
     id: "packing",
     title: "Pengemasan",
-    description: "Dikemas rapi untuk menjaga kualitas selama pengiriman.",
+    description:
+      "Dikemas rapi (termasuk unit box 13 kg untuk grade segar) agar mutu terjaga selama pengiriman.",
     image: "/images/process/4.webp",
   },
   {
     id: "distribution",
     title: "Distribusi",
-    description: "Dikirim tepat waktu ke berbagai wilayah.",
+    description:
+      "Disalurkan efisien ke supermarket, toko buah, hotel, cafe, dan UMKM agar pasokan tetap stabil.",
     image: "/images/process/5.webp",
   },
 ];
 
+export const partnership = {
+  title: "Bermitra bersama Haibanana",
+  description:
+    "Kami memasok dengan kualitas seragam, volume yang bisa diandalkan, dan jadwal rutin — sesuai kebutuhan ritel premium, F&B, dan UMKM.",
+} as const;
+
 export const partnershipBenefits: PartnershipBenefit[] = [
   {
     id: "supermarket",
-    title: "Supermarket",
-    description: "Pasokan rutin untuk rak ritel dan pasar modern.",
+    title: "Supermarket & Toko Buah",
+    description:
+      "Pasokan rutin dengan kualitas seragam untuk rak ritel modern dan toko buah premium.",
     image: "/images/partnership/1new.webp",
-    layout: "min-h-[20rem] lg:col-span-4 lg:row-span-2 lg:min-h-0",
+    imageAlt: "Pisang Haibanana di rak supermarket dan pasar modern",
+    layout: "min-h-[18rem] sm:col-span-2",
   },
   {
     id: "horeca",
-    title: "HORECA",
-    description: "Hotel, restoran, dan katering yang butuh pasokan stabil.",
+    title: "HORECA & F&B",
+    description:
+      "Hotel, restoran, bakery, dan juice bar yang butuh ukuran serta kematangan konsisten.",
     image: "/images/partnership/2.webp",
-    layout: "min-h-[18rem] lg:col-span-4",
+    imageAlt: "Pasokan pisang Haibanana untuk hotel, restoran, dan katering",
+    layout: "min-h-[18rem]",
   },
   {
     id: "distributor",
     title: "Distributor",
-    description: "Volume besar untuk jaringan distribusi di berbagai wilayah.",
+    description:
+      "Volume besar dengan kualitas terstandar untuk jaringan distribusi antarwilayah.",
     image: "/images/partnership/3.webp",
-    layout: "min-h-[18rem] lg:col-span-4",
+    imageAlt: "Distribusi pisang Haibanana dalam volume besar ke berbagai wilayah",
+    layout: "min-h-[18rem]",
   },
   {
     id: "reseller",
-    title: "Reseller",
-    description: "Stok untuk dijual kembali ke pasar lokal.",
+    title: "Cafe & UMKM",
+    description:
+      "Volume fleksibel dan akses pasokan mudah untuk cafe, kedai jus, dan UMKM olahan buah.",
     image: "/images/partnership/4.webp",
-    layout: "min-h-[16rem] lg:col-span-5",
+    imageAlt: "Cafe dan UMKM memasarkan pisang Haibanana",
+    layout: "min-h-[18rem]",
   },
   {
     id: "industri",
     title: "Industri Olahan",
-    description: "Bahan baku untuk produksi makanan dan minuman.",
+    description:
+      "Grade C dan frozen banana sebagai bahan baku makanan serta minuman yang efisien.",
     image: "/images/about/Fotopisang.webp",
-    layout: "min-h-[16rem] lg:col-span-3",
+    imageAlt: "Pisang Haibanana sebagai bahan baku industri makanan dan minuman",
+    layout: "min-h-[18rem] sm:col-span-2 lg:col-span-1",
   },
 ];
 
@@ -144,13 +205,12 @@ export const contactChannels: ContactChannel[] = [
   },
   {
     label: "Telepon",
-    value: "+62 812 3456 7890",
-    href: "tel:+62 812 3456 7890",
+    value: "+62 823-3880-1414",
+    href: "https://wa.me/6282338801414",
   },
   {
     label: "Alamat",
-    value: "Dusun Wedani, Desa Badang, Kecamatan Ngoro Kab Jombang4",
-    href: "#contact",
+    value: location.formatted,
+    href: location.mapUrl,
   },
 ];
-

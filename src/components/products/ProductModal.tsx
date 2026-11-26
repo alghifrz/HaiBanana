@@ -46,22 +46,20 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
       aria-describedby={descriptionId}
       onClose={onClose}
       onClick={handleDialogClick}
-      className="m-0 h-full max-h-none w-full max-w-none border-0 bg-ink/45 p-4 backdrop:bg-transparent open:flex open:items-center open:justify-center"
+      className="m-0 h-full max-h-none w-full max-w-none border-0 bg-ink/50 p-4 backdrop-blur-sm backdrop:bg-transparent open:flex open:items-center open:justify-center"
     >
       {product ? (
-        <div className="relative flex w-[min(100%,36rem)] max-h-[min(90dvh,42rem)] flex-col overflow-hidden rounded-3xl bg-cream shadow-2xl shadow-ink/20">
+        <div
+          data-sheet
+          className="relative flex max-h-[min(90dvh,40rem)] w-[min(100%,52rem)] flex-col overflow-hidden rounded-[2rem] bg-cream shadow-2xl sm:flex-row"
+        >
           <button
             type="button"
             onClick={() => dialogRef.current?.close()}
-            className="absolute top-4 right-4 z-20 flex size-10 items-center justify-center rounded-full bg-white/90 text-ink shadow-sm transition-colors duration-200 hover:bg-white hover:text-leaf"
+            className="pressable absolute top-4 right-4 z-20 flex size-10 items-center justify-center rounded-full border border-ink/10 bg-cream/90 text-ink backdrop-blur hover:bg-white hover:text-primary"
           >
             <span className="sr-only">Tutup detail {product.name}</span>
-            <svg
-              viewBox="0 0 16 16"
-              className="size-4"
-              aria-hidden="true"
-              focusable="false"
-            >
+            <svg viewBox="0 0 16 16" className="size-4" aria-hidden="true" focusable="false">
               <path
                 d="M4 4l8 8M12 4l-8 8"
                 fill="none"
@@ -72,36 +70,64 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
             </svg>
           </button>
 
-          <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-            <div className="relative aspect-4/3 bg-white">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                sizes="36rem"
-                className="object-contain p-6"
-              />
-            </div>
+          {/* Panel gambar */}
+          <div className="relative aspect-4/3 shrink-0 bg-cream-deep sm:aspect-auto sm:w-[42%]">
+            <div
+              aria-hidden="true"
+              className="absolute top-1/2 left-1/2 size-3/5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-secondary/30"
+            />
+            <Image
+              src={product.image}
+              alt={`${product.name} dari Haibanana`}
+              fill
+              sizes="(min-width: 640px) 22rem, 100vw"
+              className="object-contain p-8"
+            />
+          </div>
 
-            <div className="px-6 pt-6 pb-5 sm:px-8">
-              <h2 id={titleId} className="font-display text-2xl font-semibold tracking-tight text-leaf">
+          {/* Panel konten */}
+          <div className="flex min-h-0 flex-1 flex-col">
+            <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-6 pt-7 pb-5 [scrollbar-width:none] [-ms-overflow-style:none] sm:px-8 sm:pt-9 [&::-webkit-scrollbar]:hidden">
+              <p className="text-xs font-medium tracking-wide text-primary/70 uppercase">
+                Haibanana · Cavendish
+              </p>
+              <h2
+                id={titleId}
+                className="mt-2 pr-10 font-display text-2xl font-semibold tracking-[-0.025em] text-primary sm:text-[1.75rem]"
+              >
                 {product.name}
               </h2>
-              <p id={descriptionId} className="mt-3 text-[14px] leading-relaxed text-pretty text-stone">
+              <p
+                id={descriptionId}
+                className="mt-4 text-[0.9375rem] leading-[1.7] text-pretty text-stone"
+              >
                 {product.details}
               </p>
 
               {product.suitableFor.length > 0 ? (
-                <div className="mt-5">
-                  <p className="text-xs font-medium tracking-[0.16em] text-leaf uppercase">
-                    Cocok untuk
-                  </p>
+                <div className="mt-6">
+                  <p className="text-sm font-medium text-primary">Cocok untuk</p>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {product.suitableFor.map((item) => (
                       <li
                         key={item}
-                        className="rounded-full bg-leaf-soft px-3 py-1 text-xs text-leaf"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-sm text-ink/80 ring-1 ring-primary/10"
                       >
+                        <svg
+                          viewBox="0 0 16 16"
+                          className="size-3.5 shrink-0 text-secondary"
+                          aria-hidden="true"
+                          focusable="false"
+                        >
+                          <path
+                            d="M3.5 8.5l3 3 6-7"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
                         {item}
                       </li>
                     ))}
@@ -109,18 +135,18 @@ export function ProductModal({ product, onClose }: ProductModalProps) {
                 </div>
               ) : null}
             </div>
-          </div>
 
-          <div className="shrink-0 border-t border-ink/8 bg-cream px-6 py-4 sm:px-8">
-            <a
-              href={getWhatsAppOrderUrl(product)}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-leaf px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 ease-out hover:bg-ink hover:shadow-lg hover:shadow-leaf/25 active:scale-[0.99]"
-            >
-              <WhatsAppIcon />
-              Pesan {product.name} via WhatsApp
-            </a>
+            <div className="shrink-0 border-t border-ink/10 bg-cream px-6 py-4 sm:px-8">
+              <a
+                href={getWhatsAppOrderUrl(product)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pressable inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-primary px-6 py-3.5 text-sm font-medium text-cream hover:bg-ink"
+              >
+                <WhatsAppIcon />
+                Pesan {product.name} via WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       ) : null}

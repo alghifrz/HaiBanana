@@ -19,13 +19,19 @@ export function Reveal({ as: Tag = "div", delay = 0, className, children }: Reve
     const element = ref.current;
     if (!element) return;
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         setIsVisible(true);
         observer.disconnect();
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.1 },
+      { rootMargin: "0px 0px -48px 0px", threshold: 0.08 },
     );
 
     observer.observe(element);

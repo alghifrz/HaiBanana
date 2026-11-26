@@ -2,11 +2,10 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
-import { ArrowRightIcon } from "@/components/ui/icons";
 import { contactChannels } from "@/data/site";
 
 const inputClass =
-  "w-full rounded-xl border border-ink/12 bg-cream px-4 py-3 text-sm text-ink transition-colors duration-200 placeholder:text-stone/60 hover:border-ink/25 focus:border-leaf focus:outline-none";
+  "w-full rounded-xl border border-ink/12 bg-cream px-4 py-3 text-sm leading-normal text-ink transition-[border-color,background-color] duration-200 ease-soft-out placeholder:text-stone/55 hover:border-ink/22 focus:border-primary focus:bg-white focus:outline-none";
 
 const mailTarget = contactChannels.find((channel) => channel.label === "Email");
 
@@ -44,10 +43,13 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-3xl border border-ink/8 bg-white p-6 sm:p-8">
+    <form
+      onSubmit={handleSubmit}
+      className="rounded-3xl border border-ink/10 bg-cream p-6 sm:p-8"
+    >
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="flex flex-col gap-2">
-          <label htmlFor="contact-name" className="text-sm font-medium text-ink">
+          <label htmlFor="contact-name" className="text-sm font-medium tracking-[-0.01em] text-ink">
             Nama
           </label>
           <input
@@ -62,8 +64,8 @@ export function ContactForm() {
         </div>
 
         <div className="flex flex-col gap-2">
-          <label htmlFor="contact-company" className="text-sm font-medium text-ink">
-            Perusahaan <span className="font-normal text-stone">(optional)</span>
+          <label htmlFor="contact-company" className="text-sm font-medium tracking-[-0.01em] text-ink">
+            Perusahaan <span className="font-normal text-stone">(opsional)</span>
           </label>
           <input
             id="contact-company"
@@ -76,7 +78,7 @@ export function ContactForm() {
         </div>
 
         <div className="flex flex-col gap-2 sm:col-span-2">
-          <label htmlFor="contact-email" className="text-sm font-medium text-ink">
+          <label htmlFor="contact-email" className="text-sm font-medium tracking-[-0.01em] text-ink">
             Email Anda
           </label>
           <input
@@ -85,13 +87,13 @@ export function ContactForm() {
             type="email"
             required
             autoComplete="email"
-            placeholder="email@gmail.com"
+            placeholder="email@contoh.com"
             className={inputClass}
           />
         </div>
 
         <div className="flex flex-col gap-2 sm:col-span-2">
-          <label htmlFor="contact-message" className="text-sm font-medium text-ink">
+          <label htmlFor="contact-message" className="text-sm font-medium tracking-[-0.01em] text-ink">
             Pesan Anda
           </label>
           <textarea
@@ -107,10 +109,9 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-medium text-cream transition-all duration-300 ease-out hover:bg-leaf hover:shadow-lg hover:shadow-leaf/20 active:scale-[0.99] sm:w-auto"
+        className="pressable mt-7 inline-flex w-full items-center justify-center rounded-2xl bg-ink px-6 py-3.5 text-sm font-medium text-cream hover:bg-primary sm:w-auto"
       >
         Kirim pesan
-        <ArrowRightIcon />
       </button>
 
       <p aria-live="polite" className="mt-4 text-xs leading-relaxed text-stone">

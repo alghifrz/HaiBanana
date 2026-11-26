@@ -1,73 +1,108 @@
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
-import { SectionHeading } from "@/components/ui/SectionHeading";
-import { processSteps } from "@/data/site";
+import { processSection, processSteps } from "@/data/site";
+
+const processPhotos = [
+  { src: "/images/process/gbr.webp", label: "Sortasi", alt: "Proses sortasi pisang Haibanana" },
+  { src: "/images/bahan/kemasan.webp", label: "Pengemasan", alt: "Proses pengemasan pisang Haibanana" },
+  { src: "/images/bahan/truk.webp", label: "Distribusi", alt: "Proses pengiriman pisang Haibanana" },
+];
 
 export function OurProcess() {
   return (
     <section
       id="our-process"
       aria-labelledby="our-process-heading"
-      className="bg-leaf/80 py-20 backdrop-blur-xs text-cream md:py-28 lg:py-32"
+      className="relative isolate overflow-hidden bg-primary py-20 text-cream md:py-28 lg:py-32"
     >
+      {/* Dekorasi background */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -top-40 -right-40 size-[32rem] rounded-full bg-secondary/10 blur-3xl" />
+        <div className="absolute -bottom-48 -left-32 size-[28rem] rounded-full bg-cream/5 blur-3xl" />
+        <div
+          className="absolute inset-0 opacity-[0.05]"
+          style={{
+            backgroundImage: "radial-gradient(currentColor 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
+      </div>
+
       <Container>
-        <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
-          <div className="lg:sticky lg:top-28 lg:self-start">
-            <SectionHeading
-              headingId="our-process-heading"
-              eyebrow="Proses Kami"
-              tone="dark"
-              title="Proses dari Kebun hingga ke Tangan Anda"
-              description="Setiap tahap bertujuan menjaga mutu buah dan memastikan pasokan sampai tepat waktu."
-            />
+        <div className="grid gap-14 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+          {/* Kiri: sticky */}
+          <div className="">
+            <Reveal>
+              <div className="flex items-center gap-4 text-secondary">
+                <span className="text-sm font-medium tracking-wide">Proses Kami</span>
+              </div>
+            </Reveal>
+
+            <Reveal delay={80}>
+              <h2
+                id="our-process-heading"
+                className="display-title mt-3 font-display text-[clamp(2rem,5vw,3.5rem)] leading-[1.05] text-balance text-cream"
+              >
+                {processSection.title}
+              </h2>
+            </Reveal>
+
+            <Reveal delay={140}>
+              <p className="mt-5 max-w-md text-base leading-[1.7] text-pretty text-cream/70">
+                {processSection.description}
+              </p>
+            </Reveal>
 
             <Reveal delay={200}>
-              <div className="relative mt-10 aspect-8/5 overflow-hidden rounded-[2rem] bg-bark">
-                <Image
-                  src="/images/process/gbr.webp"
-                  alt="Bananas moving through the sorting and packing facility"
-                  fill
-                  sizes="(min-width: 1024px) 44vw, 90vw"
-                  className="object-cover"
-                />
+              <div className="mt-8 grid grid-cols-2 gap-3">
+                {processPhotos.map((photo, index) => (
+                  <div
+                    key={photo.src}
+                    className={`group relative overflow-hidden rounded-2xl bg-primary-light/30 ring-1 ring-cream/15 ${
+                      index === 0 ? "col-span-2 h-64 sm:h-80 lg:h-80" : "h-44 sm:h-56 lg:h-52"
+                    }`}
+                  >
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      sizes={index === 0 ? "(min-width: 1024px) 55vw, 90vw" : "(min-width: 1024px) 28vw, 45vw"}
+                      className="object-cover transition-transform duration-700 ease-spring-out group-hover:scale-[1.04]"
+                    />
+                    <span className="absolute bottom-2 left-2 rounded-full bg-cream/90 px-3 py-1 text-xs font-medium text-primary">
+                      {photo.label}
+                    </span>
+                  </div>
+                ))}
               </div>
             </Reveal>
           </div>
 
-          <ol className="relative">
-            <span
-              aria-hidden="true"
-              className="absolute top-6 bottom-12 left-6 w-px bg-cream"
-            />
-
+          {/* Kanan: timeline */}
+          <ol className="border-t border-cream/20">
             {processSteps.map((step, index) => (
-              <Reveal as="li" key={step.id} delay={index * 80} className="relative pb-10 last:pb-0">
-                <div className="flex gap-5 sm:gap-6">
-                  <div className="relative z-10 flex shrink-0 items-center gap-3">
-                    <span className="flex size-12 items-center justify-center rounded-full border border-cream bg-leaf font-mono text-sm text-banana">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <span className="flex size-16 items-center justify-center rounded-full bg-white sm:size-20">
-                      <Image
-                        src={step.image}
-                        alt=""
-                        width={80}
-                        height={80}
-                        sizes="56px"
-                        className="size-10 object-contain sm:size-12"
-                      />
-                    </span>
-                  </div>
+              <Reveal
+                as="li"
+                key={step.id}
+                delay={index * 50}
+                className="grid grid-cols-[2.5rem_1fr_auto] items-start gap-x-3 border-b border-cream/20 py-7 sm:grid-cols-[3.5rem_1fr_auto] sm:gap-x-5 sm:py-9"
+              >
+                <span aria-hidden="true" className="font-display text-xl leading-tight text-secondary tabular-nums sm:text-2xl">
+                  {index + 1}.
+                </span>
 
-                  <div className="pt-1.5 sm:pt-2.5">
-                    <h3 className="font-display text-xl tracking-tight text-cream sm:text-2xl">
-                      {step.title}
-                    </h3>
-                    <p className="mt-2.5 text-base leading-relaxed text-pretty text-cream/65">
-                      {step.description}
-                    </p>
-                  </div>
+                <div>
+                  <h3 className="font-display text-xl leading-tight font-semibold text-cream sm:text-2xl">
+                    {step.title}
+                  </h3>
+                  <p className="mt-2 max-w-md text-sm leading-[1.7] text-pretty text-cream/70 sm:text-base">
+                    {step.description}
+                  </p>
+                </div>
+
+                <div className="relative size-12 sm:size-16 bg-white rounded-full">
+                  <Image src={step.image} alt="" fill sizes="64px" className="object-contain p-2" />
                 </div>
               </Reveal>
             ))}

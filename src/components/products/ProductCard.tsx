@@ -1,37 +1,63 @@
 "use client";
 
 import Image from "next/image";
+import { ArrowRightIcon } from "@/components/ui/icons";
 import type { Product } from "@/types/product";
 
 interface ProductCardProps {
   product: Product;
+  index: number;
   onDetails: (product: Product) => void;
 }
 
-export function ProductCard({ product, onDetails }: ProductCardProps) {
+export function ProductCard({ product, index, onDetails }: ProductCardProps) {
   return (
-    <article className="flex h-full items-center gap-4 rounded-3xl border border-leaf/10 bg-white p-5 shadow-sm shadow-ink/5 transition-shadow duration-300 ease-out hover:shadow-md hover:shadow-ink/8 sm:gap-5 sm:p-6">
-      <div className="relative size-32 shrink-0 sm:size-32 lg:size-32 xl:size-40">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-3xl bg-cream ring-1 ring-primary/10 transition-all duration-500 ease-spring-out hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/10 hover:ring-primary/25">
+      {/* Area gambar */}
+      <div className="relative m-2 aspect-4/3 overflow-hidden rounded-2xl bg-cream-deep">
+        <span
+          aria-hidden="true"
+          className="absolute top-3 left-4 z-10 font-display text-sm font-semibold tabular-nums text-primary/60"
+        >
+          {String(index + 1).padStart(2, "0")}
+        </span>
+
+        {/* Lingkaran dekoratif di belakang produk */}
+        <div
+          aria-hidden="true"
+          className="absolute top-1/2 left-1/2 size-3/5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-secondary/25 transition-transform duration-700 ease-spring-out group-hover:scale-125"
+        />
+
         <Image
           src={product.image}
-          alt={product.name}
+          alt={`${product.name} dari Haibanana`}
           fill
-          sizes="(min-width: 1280px) 8rem, 7rem"
-          className="object-contain"
+          sizes="(min-width: 1024px) 18rem, (min-width: 640px) 45vw, 90vw"
+          className="object-contain p-5 transition-transform duration-500 ease-spring-out group-hover:scale-105 group-hover:-rotate-2"
         />
       </div>
 
-      <div className="flex min-w-0 flex-1 flex-col">
-        <h3 className="font-display text-xl font-semibold tracking-tight text-leaf">
+      {/* Konten */}
+      <div className="flex flex-1 flex-col px-5 pt-3 pb-5">
+        <h3 className="font-display text-xl font-semibold tracking-[-0.02em] text-primary">
           {product.name}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-pretty text-stone">{product.description}</p>
+        <p className="mt-2 line-clamp-3 text-sm leading-[1.6] text-pretty text-stone">
+          {product.description}
+        </p>
+
         <button
           type="button"
           onClick={() => onDetails(product)}
-          className="mt-4 inline-flex w-fit items-center justify-center rounded-full bg-leaf px-5 py-2 text-xs font-medium text-cream transition-all duration-300 ease-out hover:bg-ink hover:shadow-lg hover:shadow-leaf/25 active:scale-[0.98] sm:text-sm"
+          aria-label={`Lihat detail ${product.name}`}
+          className="pressable mt-auto flex w-full items-center justify-between pt-5 text-sm font-medium text-primary after:absolute after:inset-0 after:content-['']"
         >
-          Selengkapnya
+          <span className="underline decoration-primary/0 underline-offset-4 transition-colors group-hover:decoration-primary/60">
+            Selengkapnya
+          </span>
+          <span className="grid size-9 place-items-center rounded-full bg-primary text-cream transition-all duration-300 group-hover:translate-x-0.5 group-hover:bg-ink">
+            <ArrowRightIcon />
+          </span>
         </button>
       </div>
     </article>

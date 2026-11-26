@@ -5,16 +5,9 @@ export interface NavItem {
   sectionId?: string;
 }
 
-export interface HeroHighlight {
-  image: string;
-  /** First line, shown lighter above the emphasis. */
-  kicker: string;
-  title: string;
-}
-
 export interface HeadlineLine {
   text: string;
-  /** "accent" renders the line in gold, matching the brand headline treatment. */
+  /** "accent" renders the line in secondary, matching the brand headline treatment. */
   tone: "primary" | "accent";
 }
 
@@ -37,7 +30,8 @@ export interface PartnershipBenefit {
   title: string;
   description: string;
   image: string;
-  /** Tailwind grid placement for the staggered bento layout. */
+  imageAlt: string;
+  /** Tailwind grid placement classes for the partnership grid. */
   layout: string;
 }
 

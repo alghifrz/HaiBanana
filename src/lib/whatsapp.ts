@@ -3,7 +3,7 @@ import type { Product } from "@/types/product";
 
 export function getWhatsAppOrderUrl(product: Product): string {
   const message = [
-    `Halo Haibanana, saya ingin memesan pisang ${product.name}.`,
+    `Halo Haibanana, saya ingin memesan ${product.name}.`,
     "",
     "Mohon informasi ketersediaan, harga, dan cara pemesanannya.",
     "",

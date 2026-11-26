@@ -11,13 +11,12 @@ interface AnchorButtonProps {
 }
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-all duration-300 ease-out active:scale-[0.98]";
+  "pressable inline-flex items-center justify-center gap-2 rounded-2xl px-6 py-3 text-sm font-medium";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-leaf text-cream hover:bg-ink hover:shadow-lg hover:shadow-leaf/25",
-  secondary: "bg-banana text-ink hover:bg-banana/85 hover:shadow-lg hover:shadow-banana/30",
-  outline:
-    "border border-leaf bg-cream/80 text-leaf backdrop-blur-sm hover:border-leaf hover:bg-leaf hover:text-cream",
+  primary: "bg-primary text-cream hover:bg-ink",
+  secondary: "bg-secondary text-ink hover:bg-secondary/90",
+  outline: "border border-primary/30 bg-cream/90 text-primary hover:border-primary hover:bg-primary hover:text-cream",
   ghost: "border border-current/20 hover:border-current/50 hover:bg-current/5",
 };
 

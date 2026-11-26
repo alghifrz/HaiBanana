@@ -30,24 +30,20 @@ export function SectionHeading({
       }
     >
       <Reveal>
-        <span
-          className={`inline-flex items-center gap-2 text-xs font-medium uppercase tracking-[0.2em] ${
-            isDark ? "text-banana" : "text-leaf"
+        <p
+          className={`text-sm font-medium tracking-[-0.01em] ${
+            isDark ? "text-secondary" : "text-primary"
           }`}
         >
-          <span
-            aria-hidden="true"
-            className={`h-px w-6 ${isDark ? "bg-banana/60" : "bg-leaf/40"}`}
-          />
           {eyebrow}
-        </span>
+        </p>
       </Reveal>
 
-      <Reveal delay={80}>
+      <Reveal delay={70}>
         <h2
           id={headingId}
-          className={`mt-5 font-display text-3xl leading-[1.1] tracking-tight text-balance sm:text-4xl lg:text-[2.75rem] ${
-            isDark ? "text-cream" : "text-leaf"
+          className={`display-title mt-3 font-display text-[1.875rem] text-balance sm:mt-4 sm:text-4xl lg:text-[2.75rem] ${
+            isDark ? "text-cream" : "text-primary"
           }`}
         >
           {title}
@@ -55,9 +51,9 @@ export function SectionHeading({
       </Reveal>
 
       {description ? (
-        <Reveal delay={140}>
+        <Reveal delay={120}>
           <p
-            className={`mt-5 text-base leading-relaxed text-pretty sm:text-lg ${
+            className={`mt-4 max-w-xl text-[0.9375rem] leading-[1.65] text-pretty sm:mt-5 sm:text-lg ${
               isDark ? "text-cream/70" : "text-stone"
             }`}
           >
