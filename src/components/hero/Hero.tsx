@@ -49,7 +49,7 @@ export function Hero() {
 
           <div className="w-full">
             <Reveal delay={280}>
-              <p className="text-white sm:text-base md:text-[1.8rem]">
+              <p className="text-white text-xs md:text-[1.8rem]">
                 {hero.description}
               </p>
             </Reveal>
